@@ -15,7 +15,6 @@ Secondary Colors:
 Fonts:
 - Proxima Nova
 - Avenir
-
 */
 
 /* 
@@ -25,11 +24,49 @@ Fonts:
 
 /* Set up the main font and background color for the whole page */
 body {
-  background-color: #f4f8fb; /* Soft light blue for a fresh look */
+  /* Set a background image for the whole page */
+  background-image: url('img/Charity.jpg'); /* Use charity.jpg from the img folder */
+  background-size: 100%;                   /* Show more of the image (zoomed out) */
+  background-repeat: no-repeat;             /* Do not repeat the image */
+  background-position: center;              /* Center the image */
+  background-attachment: fixed;             /* Keep the image fixed when scrolling */
+  background-color: #f4f8fb;                /* Fallback color if image doesn't load */
   font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
   margin: 0;
   padding: 0;
   color: #222;
+  /* Responsive improvements */
+  overflow-x: hidden;                      /* Prevent horizontal scroll */
+  min-width: 320px;                        /* Minimum width support */
+}
+
+/* Common button base styles */
+.btn-base {
+  display: block;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+/* Common interactive element hover effect */
+.interactive-element {
+  transition: all 0.3s ease;
+  transform: translateY(0) scale(1);
+}
+
+.interactive-element:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(255, 201, 7, 0.3);
+}
+
+/* Ensure all elements don't overflow */
+* {
+  box-sizing: border-box;                  /* Include padding and border in width calculations */
+  max-width: 100%;                         /* Prevent elements from overflowing */
 }
 
 /* Add a slight shadow and rounded corners to each section for depth */
@@ -37,162 +74,489 @@ section {
   background: #fff; /* White background for sections */
   border-radius: 12px; /* Rounded corners */
   box-shadow: 0 2px 8px rgba(46, 157, 247, 0.07); /* Soft blue shadow */
-  margin: 24px 10px; /* Space between sections */
+  margin: 24px 10px 20px 10px; /* Combined margin-bottom from spacing section */
   padding: 24px 16px;
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  transform: translateY(0);   /* Starting position */
 }
 
-/* Hero Section Styles */
+/* Enhanced hover effect for sections */
+section:hover {
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 4px 16px rgba(46, 157, 247, 0.12); /* Stronger shadow on hover */
+}
+
+/* Style the hero section (the top banner) */
 .hero {
-  position: relative; /* Needed for overlay */
-  /* Set a background image that covers the whole section */
-  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');
-  background-size: cover;      /* Make the image cover the whole area */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat;
-  color: #fff;                 /* White text for contrast */
-  text-align: center;          /* Center the text */
-  padding: 60px 20px;          /* Add space above and below */
-  border-radius: 0 0 16px 16px; /* Only round bottom corners */
-
-  /* Add a dark overlay for better text readability */
-  /* This uses a simple linear-gradient overlay */
-  background-blend-mode: darken;
-  background-color: rgba(46, 157, 247, 0.45); /* Blue overlay */
+  background: none;           /* Remove the white background */
+  box-shadow: none;           /* Remove the shadow */
+  border-radius: 0;           /* Remove rounded corners */
+  padding: 40px 0 80px 40px;  /* Reduce top padding to move text up */
+  text-align: left;           /* Align text to the left */
+  max-width: 600px;           /* Limit width so text doesn't stretch too far */
+  margin-left: 0;             /* Align to the left edge */
+  margin-top: 40px;           /* Reduce space below the navbar to move text up */
 }
 
-/* Make the headline bold and modern */
+/* Make the headline text white and bold */
 .hero h1 {
+  color: #fff;                /* White text */
   font-size: 2.5em;
   font-weight: bold;
   letter-spacing: 1px;
   margin-bottom: 15px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Soft shadow for readability */
+  text-shadow: 0 2px 8px rgba(0,0,0,0.20); /* Add shadow for readability */
 }
 
-/* Style the subheadline */
+/* Make the subheadline text white */
 .hero p {
+  color: #fff;                /* White text */
   font-size: 1.2em;
   margin-top: 0;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  margin-bottom: 24px;        /* Add more space below the subheadline */
+  text-shadow: 0 1px 4px rgba(0,0,0,0.18); /* Add shadow for readability */
 }
 
-/* Story Section Styles */
-.story {
-  background-color: #8BD1CB; /* Secondary Light Blue */
+/* Donation options container styles */
+.donation-options {
+  background: #fff;                /* White background for the box */
+  border-radius: 10px;             /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10); /* Soft shadow */
+  padding: 20px 24px 12px 24px;    /* Reduced bottom padding (top, right, bottom, left) */
+  margin-top: 8px;                 /* Reduced space above the donation box */
+  width: 380px;                    /* Make the box wider */
+  box-sizing: border-box;          /* Include padding in the width */
+  display: flex;                   /* Use flex to center content vertically */
+  flex-direction: column;          /* Stack children vertically */
+  align-items: center;             /* Center children horizontally */
+  border: 1px solid #222;          /* Thin black border around the box */
+}
+
+/* Header for the donation box */
+.donation-header {
+  text-align: center;        /* Center the header text */
+  color: #222;               /* Black text */
+  font-size: 1.2em;          /* Slightly larger text */
+  margin-top: 0;             /* Remove top margin */
+  margin-bottom: 10px;       /* Space below the header */
+  width: 100%;               /* Make header full width of the box */
+  padding-bottom: 10px;      /* Space below text before the line */
+  border-bottom: 1px solid #222; /* Black line under the header */
+}
+
+/* Each row of donation options */
+.donation-row {
+  display: flex;                   /* Place boxes in a row */
+  gap: 0;                          /* Remove gap, use margin in .donation-box */
+  margin-bottom: 18px;             /* Space between rows */
+  width: 100%;                     /* Make row fill the box */
+  justify-content: center;         /* Center the donation boxes */
+}
+
+/* Remove bottom margin from the last row */
+.donation-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Individual donation box styles */
+.donation-box {
+  background: #f0f0f0;           /* Slightly grey background */
+  border-radius: 8px;            /* Rounded corners */
+  text-align: center;            /* Center the text */
+  padding: 18px 0;               /* Space inside each box */
+  font-weight: bold;             /* Bold text */
+  font-size: 1.1em;              /* Slightly larger text */
+  color: #222;                   /* Black text */
+  cursor: pointer;               /* Show pointer on hover */
+  border: 2px solid transparent; /* No border by default */
+  flex: 1 1 0;                   /* All boxes grow and shrink equally */
+  min-width: 0;                  /* Prevent overflow */
+  max-width: none;               /* Remove max width so boxes can grow */
+  box-sizing: border-box;        /* Include padding and border in width */
+  margin: 0 8px;                 /* Add space between boxes */
+}
+
+/* Enhanced hover effect for donation boxes */
+.donation-box:hover {
+  background: #FFC907;           /* Yellow highlight */
+  color: #222;                   /* Keep text black */
+  border: 2px solid #FFC907;     /* Add yellow border */
+}
+
+/* Universal focus states for better accessibility */
+.interactive-element:focus,
+.donation-box:focus,
+.navbar-links a:focus {
+  outline: 2px solid #2E9DF7;
+  outline-offset: 2px;
+  transform: translateY(-1px) scale(1.01);
+}
+
+/* Frequency selection box styles */
+.frequency-options {
+  display: flex;                /* Place options in a row */
+  width: 380px;                 /* Match the width of the donation box */
+  margin-bottom: 16px;          /* Space below this box */
+  border-radius: 10px;          /* Rounded corners */
+  overflow: hidden;             /* Hide corners on children */
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10); /* Soft shadow */
+  background: #fff;             /* White background for the box */
+  border: 1px solid #222;       /* Thin black border around the box */
+}
+
+/* Each frequency option style */
+.frequency-choice {
+  flex: 1;                      /* Make both options equal width */
+  text-align: center;           /* Center the text */
+  padding: 12px 0;              /* Space inside each option */
+  font-weight: bold;            /* Bold text */
+  font-size: 1em;               /* Normal size text */
+  color: #222;                  /* Black text for contrast on white */
+  cursor: pointer;              /* Pointer on hover */
+  background: transparent;      /* Transparent so parent box shows */
+  border: none;                 /* No border */
+  position: relative;           /* For pseudo-element effects */
+}
+
+/* Enhanced hover effect for frequency options */
+.frequency-choice:hover {
+  background: #FFC907;          /* Yellow highlight */
+  color: #222;                  /* Black text on hover */
+}
+
+/* Add a black line between the two frequency options */
+.frequency-choice:not(:last-child) {
+  border-right: 1px solid #222; /* Black line between options */
+}
+
+/* Bottom sections - All have light tan background and consistent sizing */
+.story,
+#impact-story,
+.call-to-action {
+  background-color: #F5DEB3; /* Light tan color for all bottom sections */
   color: #222;
   text-align: center;
-  padding: 30px 20px;
+  padding: 20px 20px;        /* Reduced padding to make boxes smaller */
+  min-height: 120px;         /* Reduced minimum height */
+  display: flex;             /* Use flex for consistent layout */
+  flex-direction: column;    /* Stack content vertically */
+  justify-content: center;   /* Center content vertically */
 }
 
-/* Add accent color to section headings */
+/* Section headings in bottom sections - black color and larger size */
+.story h2,
+#impact-story h2,
+.call-to-action h2 {
+  color: #222; /* Black color for section headers */
+  margin-top: 0;
+  margin-bottom: 8px; /* Reduced space below headers */
+  font-weight: bold;
+  font-size: 1.8em; /* Larger header text */
+}
+
+/* Paragraph text in bottom sections - larger size */
+.story p,
+#impact-story p,
+.call-to-action p {
+  font-size: 1.2em; /* Larger paragraph text */
+  line-height: 1.5; /* Better line spacing */
+  margin-top: 0; /* Remove top margin */
+  margin-bottom: 0; /* Remove bottom margin */
+}
+
+/* Keep other h2 elements with blue color */
 h2 {
   color: #2E9DF7; /* Primary blue */
   margin-top: 0;
   font-weight: bold;
 }
 
-/* Call-to-Action Section Styles */
-.call-to-action {
-  background-color: #FFC907; /* Primary Yellow */
-  color: #222;
-  text-align: center;
-  padding: 30px 20px;
+/* Style for the yellow donation button */
+.donate-btn {
+  width: 100%;           /* Button fills the width of the donation box */
+  margin: 0 12px;        /* Space on left and right */
+  height: 56px;          /* Standard height */
+  background-color: #FFC907; /* Yellow background */
+  color: #222;           /* Black text */
+  font-size: 1.1em;      /* Match donation box text size */
+  line-height: 56px;     /* Vertically center the text */
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10); /* Soft shadow */
 }
 
-/* Style the impact story image */
-.impact-image {
-  width: 100%;
-  max-width: 320px;
-  border-radius: 10px;
-  margin-bottom: 16px;
+/* Enhanced hover effect for the donate button */
+.donate-btn:hover {
+  background-color: #FFD84A;      /* Lighter yellow on hover */
+  transform: translateY(-3px) scale(1.05); /* Lift up and slightly grow */
+  box-shadow: 0 6px 20px rgba(255, 201, 7, 0.4); /* Stronger yellow shadow */
+}
+
+/* Focus state for better accessibility */
+.donate-btn:focus {
+  outline: 3px solid #2E9DF7; /* Blue focus outline */
+  outline-offset: 2px;
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Navigation Bar Styles */
+/* This styles the navigation bar at the top of the page */
+.navbar {
+  background-color: #fff; /* White background */
+  color: #222;            /* Black text */
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 0 0 12px 12px;
   box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
 }
 
-/* Donate Button Styles */
-.donate-button {
-  display: inline-block;
-  background-color: #4FCB53; /* Green */
-  color: #fff;
-  padding: 14px 32px;
-  text-decoration: none;
-  border-radius: 6px;
+/* Style for the logo or site name */
+.navbar-logo {
   font-weight: bold;
-  font-size: 1.1em;
-  margin-top: 18px;
-  box-shadow: 0 2px 8px rgba(79, 203, 83, 0.10);
-  transition: background 0.3s, transform 0.2s;
-  border: none;
-  cursor: pointer;
+  font-size: 1.3em;
+  color: #222; /* Black text for logo */
+  letter-spacing: 1px;
+  padding-left: 4px;
 }
 
-/* Change button color when hovered */
-.donate-button:hover {
-  background-color: #159A48; /* Dark Green */
-  transform: translateY(-2px) scale(1.04); /* Slight lift */
+/* Style for the logo image in the navigation bar */
+.navbar-logo-img {
+  height: 24px;      /* Make the logo smaller so it matches the text size */
+  width: auto;       /* Keep the image's original shape */
+  margin-right: 16px;/* Add space between the logo and the links */
+  display: block;    /* Make sure the image acts like a block element */
 }
 
-/* Add some spacing between sections */
-section {
-  margin-bottom: 20px;
+/* Navigation links styles */
+.navbar-links {
+  list-style: none;
+  margin: 0 0 0 24px;
+  padding: 0;
+  display: flex;
+  gap: 16px;
 }
 
-/* 
-  Media Queries for Responsive Design
-  Media queries help make your website look good on different screen sizes,
-  like phones (small screens) and computers (large screens).
-*/
+/* Style each link */
+.navbar-links a {
+  color: #222; /* Black text for links */
+  text-decoration: none;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 4px;
+  transition: all 0.3s ease;  /* Smooth transition for all properties */
+  transform: translateY(0);   /* Starting position */
+  position: relative;         /* For pseudo-element positioning */
+}
 
-/* This media query applies styles when the screen is 600px wide or less (like on most phones) */
+/* Enhanced hover effect for navigation links */
+.navbar-links a:hover {
+  background-color: #FFC907;
+  color: #222;               /* Dark text */
+  transform: translateY(-1px); /* Slight lift effect */
+  box-shadow: 0 2px 8px rgba(255, 201, 7, 0.3); /* Yellow glow */
+}
+
+/* Logo image styles */
+.navbar-img {
+  margin-left: auto;      /* Push image all the way to the right */
+  height: 40px;           /* Set logo height */
+  width: auto;            /* Keep image aspect ratio */
+  display: block;
+}
+
+/* Make navbar stack on small screens */
 @media (max-width: 600px) {
-  /* Make hero section padding smaller on small screens */
+  .navbar {
+    flex-direction: column;   /* Stack items vertically */
+    align-items: flex-start;  /* Align to the left */
+    padding: 10px 8px;
+  }
+  .navbar-links {
+    flex-direction: column;   /* Stack links vertically */
+    gap: 8px;
+    width: 100%;
+    margin: 8px 0 0 0;
+  }
+  .navbar-img {
+    margin: 12px 0 0 0;      /* Add space above logo on small screens */
+    align-self: flex-end;     /* Move logo to the right */
+  }
+  
+  /* Make hero section mobile-friendly */
   .hero {
-    padding: 32px 8px;
-    font-size: 1em;
+    padding: 20px 16px 40px 16px; /* Reduce padding on mobile */
+    margin-top: 20px;
+    text-align: center;       /* Center content on mobile */
+    max-width: 100%;          /* Use full width on mobile */
   }
-
-  /* Make headline font size smaller so it fits on small screens */
   .hero h1 {
-    font-size: 1.4em;
+    font-size: 1.8em;         /* Smaller but still prominent */
+    margin-bottom: 12px;
   }
-
-  /* Make subheadline font size smaller */
   .hero p {
-    font-size: 1em;
+    font-size: 1em;           /* Readable size on mobile */
+    margin-bottom: 20px;
   }
-
-  /* Make story and call-to-action sections have less padding */
+  
+  /* Make donation boxes responsive */
+  .frequency-options {
+    width: 100%;              /* Full width on mobile */
+    max-width: 350px;         /* Maximum width limit */
+    margin: 0 auto 12px auto; /* Center and reduce spacing */
+  }
+  
+  .donation-options {
+    width: 100%;              /* Full width on mobile */
+    max-width: 350px;         /* Maximum width limit */
+    margin: 8px auto 0 auto;  /* Center the donation box */
+    padding: 16px 16px 12px 16px; /* Reduce padding on mobile */
+  }
+  
+  .donation-header {
+    font-size: 1.1em;         /* Slightly smaller header on mobile */
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+  }
+  
+  .donation-row {
+    margin-bottom: 12px;      /* Less space between rows */
+  }
+  
+  .donation-box {
+    margin: 0 4px;            /* Less margin between boxes */
+    padding: 14px 0;          /* Less padding inside boxes */
+    font-size: 1em;           /* Smaller text on mobile */
+  }
+  
+  .donate-btn {
+    margin: 0 8px;            /* Less margin on mobile */
+    height: 48px;             /* Slightly smaller button */
+    font-size: 1em;           /* Smaller button text */
+    line-height: 48px;        /* Match new height */
+  }
+  
+  /* Other sections mobile adjustments */
   .story,
-  .call-to-action,
-  .donation-section {
-    padding: 14px 8px;
+  .call-to-action {
+    padding: 16px 16px;       /* Reduced mobile padding */
+    margin: 16px 8px;         /* Less margin on mobile */
   }
-
-  /* Make impact story image smaller and stack above the text */
+  
+  /* Adjust text sizes for mobile */
+  .story h2,
+  #impact-story h2,
+  .call-to-action h2 {
+    font-size: 1.5em; /* Slightly smaller headers on mobile */
+  }
+  
+  .story p,
+  #impact-story p,
+  .call-to-action p {
+    font-size: 1.1em; /* Slightly smaller paragraphs on mobile */
+  }
+  
   .impact-content {
-    display: block; /* Stack items vertically */
+    display: block;           /* Stack items vertically */
     text-align: center;
   }
+}
 
-  .impact-image {
-    width: 90%;    /* Make image take up most of the width */
-    max-width: 220px;
+/* Tablet and medium screen adjustments */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .hero {
+    padding: 30px 20px 60px 30px; /* Adjust padding for tablets */
+    max-width: 90%;               /* Use more width on tablets */
+  }
+  
+  .hero h1 {
+    font-size: 2.2em;             /* Slightly smaller than desktop */
+  }
+  
+  .hero p {
+    font-size: 1.1em;             /* Adjust text size for tablets */
+  }
+  
+  .donation-options,
+  .frequency-options {
+    width: 400px;                 /* Slightly larger on tablets */
+  }
+  
+  .story,
+  .call-to-action {
+    padding: 20px 20px;           /* Reduced padding for tablets */
+  }
+  
+  /* Adjust text sizes for tablets */
+  .story h2,
+  #impact-story h2,
+  .call-to-action h2 {
+    font-size: 1.7em; /* Medium size headers on tablets */
+  }
+  
+  .story p,
+  #impact-story p,
+  .call-to-action p {
+    font-size: 1.15em; /* Medium size paragraphs on tablets */
   }
 }
 
-/* This media query applies styles when the screen is wider than 600px (like on tablets and computers) */
-@media (min-width: 601px) {
-  /* Show image and text side by side in the impact story */
+/* This media query applies styles when the screen is wider than 1024px (like on computers) */
+@media (min-width: 1025px) {
+  /* Impact content centered layout */
   .impact-content {
-    display: flex;           /* Place items in a row */
+    display: flex;           /* Use flex for centering */
     align-items: center;     /* Vertically center items */
     justify-content: center; /* Center the whole group */
-    gap: 28px;               /* Space between image and text */
-    text-align: left;
+    text-align: center;      /* Center text */
     max-width: 800px;
     margin: 0 auto;
   }
+}
 
-  .impact-image {
-    width: 300px;
+/* Extra small screens (very small phones) */
+@media (max-width: 360px) {
+  .hero h1 {
+    font-size: 1.5em;             /* Even smaller for tiny screens */
+    line-height: 1.2;
   }
+  
+  .hero p {
+    font-size: 0.9em;             /* Smaller text for tiny screens */
+  }
+  
+  .donation-options,
+  .frequency-options {
+    max-width: 300px;             /* Smaller width for tiny screens */
+  }
+  
+  .donation-box {
+    font-size: 0.9em;             /* Smaller donation box text */
+    padding: 12px 0;              /* Less padding */
+  }
+  
+  .donate-btn {
+    height: 44px;                 /* Smaller button height */
+    line-height: 44px;            /* Match height */
+    font-size: 0.9em;             /* Smaller button text */
+  }
+  
+  .navbar {
+    padding: 8px 4px;             /* Less padding on tiny screens */
+  }
+  
+  .story,
+  .call-to-action {
+    padding: 12px 12px;           /* Reduced padding for tiny screens */
+    margin: 12px 4px;
+  }
+}
+
+/* Make all headers (h1, h2, h3, etc.) use Proxima Nova font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Proxima Nova', Arial, sans-serif; /* Use Proxima Nova for all headers */
+}
+
+/* Make all paragraphs use Avenir font */
+p {
+  font-family: 'Avenir', Arial, sans-serif; /* Use Avenir for all paragraphs */
 }

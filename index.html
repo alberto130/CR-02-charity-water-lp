@@ -5,43 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charity Water Landing Page</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- All CSS is now in styles.css for best responsive results -->
 </head>
 <body>
+    <!-- Navigation Bar: The logo is on the left, links on the right -->
+    <nav class="navbar">
+        <!-- Logo image goes on the left -->
+        <img src="img/cw_logo-2.png" alt="charity: water logo" class="navbar-logo-img">
+        <!-- Navigation links go on the right -->
+        <ul class="navbar-links">
+            <!-- "Give" link moved to the left, right after the logo -->
+            <li><a href="#call-to-action">Give</a></li>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#story">Take Action</a></li>
+            <li><a href="#impact-story">About Us</a></li>
+            <li><a href="#story">Why Water?</a></li>
+            <!-- New "Sign In" section added at the end -->
+            <li><a href="#sign-in">Sign In</a></li>
+        </ul>
+    </nav>
     <!-- Hero Section: This is the main banner at the top of the page -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
+        <h1>You Dont Need a Lot to Do a Lot</h1>
         <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
-    </section>
+        <p>“Give what you can. We’ll show you exactly how it helps. Every dollar brings clean, safe water to people who need it most."</p>
+        
+        <!-- Frequency selection box above the donation options -->
+        <div class="frequency-options">
+          <div class="frequency-choice interactive-element">Give Once</div>
+          <div class="frequency-choice interactive-element">Give Monthly</div>
+        </div>
 
-    <!-- Story Section: This tells the story of the nonprofit -->
-    <section class="story">
-        <h2>Our Story</h2>
-        <p>
-         
-    </section>
-
-    <!-- Real-World Impact Story Section -->
-    <section class="impact-story">
-        <!-- Section headline -->
-        <h2>Real Impact: Meet Amina</h2>
-        <!-- Container for image and text -->
-        <div class="impact-content">
-            <!-- Impact image -->
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Amina smiling with clean water" class="impact-image">
-            <!-- Impact story text -->
-            <p>
-                Amina used to walk miles every day to collect water for her family. Thanks to your support, her village now has a clean water well. Amina can go to school and her family is healthier and happier.
-            </p>
+        <!-- Donation options box below the text -->
+        <div class="donation-options">
+          <!-- Header for the donation box -->
+          <h3 class="donation-header">Choose an amount to give</h3>
+          <!-- First row of donation options -->
+          <div class="donation-row">
+            <div class="donation-box interactive-element">$5 USD</div>
+            <div class="donation-box interactive-element">$10 USD</div>
+          </div>
+          <!-- Second row of donation options -->
+          <div class="donation-row">
+            <div class="donation-box interactive-element">$20 USD</div>
+            <div class="donation-box interactive-element">Other Amount</div>
+          </div>
+          <!-- Centered donate button below the options -->
+          <div style="text-align: center; margin-top: 24px;">
+            <button class="donate-btn btn-base">Give Here</button>
+          </div>
+          <!-- Black line separator -->
+          <hr style="border: none; border-top: 1px solid #222; margin: 16px 0 8px 0; width: 100%;">
+          <!-- Impact text at the bottom of the donation box -->
+          <p style="text-align: center; margin-top: 0; font-size: 0.9em; color: #666; line-height: 1.4;">It only takes $40 to bring 1 person reliable access to the clean water they deserve.</p>
         </div>
     </section>
-
-    <!-- Call-to-Action Section: This encourages visitors to take action -->
-    <section class="call-to-action">
-        <h2>Make a Difference</h2>
-        <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
-        <a href="#" class="donate-button">Donate Now</a>
-    </section>
 </body>
+    <!-- Story Section: Shares why clean water matters -->
+    <section class="story" id="story">
+      <!-- Section heading -->
+      <h2>Why Water?</h2>
+      <!-- Short story text -->
+      <p>771 million people in the world live without clean water. Clean water changes everything: it improves health, gives kids more time in school, and helps families thrive.</p>
+    </section>
+
+    <!-- Impact Story Section: Shows the difference donations make -->
+    <section id="impact-story">
+      <div class="impact-content">
+        <!-- Impact text -->
+        <div>
+          <h2>Your Impact</h2>
+          <p>Every $40 brings clean water to one person. Your donation helps build wells and water systems for communities in need.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section: Encourages users to donate -->
+    <section class="call-to-action" id="call-to-action">
+      <h2>Ready to Make a Difference?</h2>
+      <p>100% of your donation goes directly to clean water projects. Join us and change lives today!</p>
+    </section>
+
 </html>
